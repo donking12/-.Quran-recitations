@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reciter Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Avoid FOUC by setting theme and language from localStorage before React loads
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      if (localStorage.getItem('language') === 'ar') {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      } else {
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+      }
+    </script>
+    <style>
+      /* For Webkit-based browsers (Chrome, Safari) */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9; /* slate-100 */
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #27272a; /* zinc-800 */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #94a3b8; /* slate-400 */
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #52525b; /* zinc-600 */
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b; /* slate-500 */
+      }
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #71717a; /* zinc-500 */
+      }
+
+      /* Audio wave visualizer animation */
+      @keyframes wave {
+        0%, 100% { height: 6px; }
+        50% { height: 18px; }
+      }
+      .wave-bar {
+        animation: wave 1.2s linear infinite;
+        display: inline-block;
+        width: 4px;
+        background-color: #38bdf8; /* sky-400 */
+        border-radius: 2px;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-100 dark:bg-zinc-900">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
